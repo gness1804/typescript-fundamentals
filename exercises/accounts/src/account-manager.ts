@@ -4,13 +4,12 @@ export interface User {
   isActive: boolean,
 }
 
-export interface Admin extends User {
-  adminSince: Date,
+export interface ConfirmedUser extends User {
+  isActive: true,
 }
 
-export interface AdminCandidate extends User {
+export interface Admin extends User {
   adminSince: Date,
-  isActive: true,
 }
 
 export class AccountManager {
@@ -23,10 +22,10 @@ export class AccountManager {
    * @return the new user account. An admin must activate it using activateNewUser
    * @see this.activateNewUser
    */
-  register(email: string, password: string): User | never {
+  register(email: string, password: string): User {
     if(!email) throw 'Must provide an email';
     if(!password) throw 'Must provide a password';
-    let user: User = { email, password, isActive: false };
+    const user: User = { email, password, isActive: false };
     this.users.push(user);
     return user;
   }
@@ -37,10 +36,9 @@ export class AccountManager {
    * @param userToApprove Newly-registered user, who is to be activated
    * @return the updated user object, now activated
    */
-  activateNewUser(approver: Admin, userToApprove: User): User | never {
+  activateNewUser(approver: Admin, userToApprove: User): ConfirmedUser {
     if (!approver.adminSince) throw "Approver is not an admin!";
-    userToApprove.isActive = true;
-    return userToApprove;
+    return { ...userToApprove, isActive: true };
   }
 
   /**
@@ -49,11 +47,9 @@ export class AccountManager {
    * @param user an active user who you're making an admin
    * @return the updated user object, now can also be regarded as an admin
    */
-  promoteToAdmin(existingAdmin: Admin, user: User): Admin | never {
+  promoteToAdmin(existingAdmin: Admin, user: User): Admin {
     if (!existingAdmin.adminSince) throw "Not an admin!";
     if (user.isActive !== true) throw "User must be active in order to be promoted to admin!";
-    let userCandidate = user as AdminCandidate;
-    userCandidate.adminSince = new Date();
-    return userCandidate;
+    return { ...user, adminSince: new Date()};
   }
 }
