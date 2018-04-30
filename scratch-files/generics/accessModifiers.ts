@@ -44,5 +44,6 @@ bradMarchand.augmentAge();
 console.log('bradMarchand.isAthlete:', bradMarchand.isAthlete);
 Player.augmentCounter();
 console.log('Player.counter:', Player.counter);
+// console.log('bradMarchand.counter:', bradMarchand.counter); // Nope! 'counter' is a static property on Player; it does not apply to instances.
 
 
