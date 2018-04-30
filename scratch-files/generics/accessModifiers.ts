@@ -4,12 +4,17 @@ class Player {
   private team: string;
   protected age: number;
   readonly isAthlete: boolean;
+  static counter:number = 0;
 
   constructor(name: string, team: string, age: number) {
     this.name = name;
     this.team = team;
     this.age = age;
     this.isAthlete = true;
+  }
+
+  static augmentCounter(): void {
+    this.counter++;
   }
 
   // makeNotAthlete() {
@@ -37,5 +42,7 @@ bradMarchand.setName('Phil Marchand');
 console.log('bradMarchand.name:', bradMarchand.name);
 bradMarchand.augmentAge();
 console.log('bradMarchand.isAthlete:', bradMarchand.isAthlete);
+Player.augmentCounter();
+console.log('Player.counter:', Player.counter);
 
 
