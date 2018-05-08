@@ -71,7 +71,7 @@ test('behavior of length should be the same with data types other than strings',
   exp(n.length()).toEqual(0);
 });
 
-test('behavior of push should be the same with data types other than strings', () => {
+test('behavior of push (simple) should be the same with data types other than strings', () => {
   const l = new Stack<number>();
   l.push(56);
   exp(l.length()).toEqual(1);
@@ -79,9 +79,24 @@ test('behavior of push should be the same with data types other than strings', (
   m.push(false);
   exp(m.length()).toEqual(1);
   const n = new Stack<President>();
-  const georgeWBush = new President('George', 43);
-  exp(n.length()).toEqual(0);
+  const gwb = new President('George', 43);
+  n.push(gwb);
+  exp(n.length()).toEqual(1);
 });
+
+  test('behavior of push (complex) should be the same with data types other than strings', () => {
+    const l = new Stack<number>();
+    l.push([56, 23, 7584]);
+    exp(l.length()).toEqual(3);
+    const m = new Stack<boolean>();
+    m.push([false, true, true, false]);
+    exp(m.length()).toEqual(4);
+    const n = new Stack<President>();
+    const gwb = new President('George', 43);
+    const lbj = new President('Lyndon', 36);
+    n.push([gwb, lbj]);
+    exp(n.length()).toEqual(2);
+  });
 } else {
   describe('Instructions', () => {
     test('Please uncomment the Stack class in stack/src/stack.ts', () => {
