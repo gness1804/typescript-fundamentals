@@ -97,6 +97,26 @@ test('behavior of push (simple) should be the same with data types other than st
     n.push([gwb, lbj]);
     exp(n.length()).toEqual(2);
   });
+
+  test('behavior of pop should be the same with data types other than strings', () => {
+    const l = new Stack<number>();
+    l.push([56, 23, 7584]);
+    const lastL = l.pop();
+    exp(l.length()).toEqual(2);
+    exp(lastL).toEqual(7584);
+    const m = new Stack<boolean>();
+    m.push([false, true, true, false]);
+    const lastM = m.pop();
+    exp(m.length()).toEqual(3);
+    exp(lastM).toEqual(false);
+    const n = new Stack<President>();
+    const gwb = new President('George', 43);
+    const lbj = new President('Lyndon', 36);
+    n.push([gwb, lbj]);
+    const lastN = n.pop();
+    exp(n.length()).toEqual(1);
+    exp(lastN).toEqual(lbj);
+  });
 } else {
   describe('Instructions', () => {
     test('Please uncomment the Stack class in stack/src/stack.ts', () => {
