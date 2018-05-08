@@ -7,7 +7,7 @@ interface IStack<T> {
 }
 
 export class Stack<T> implements IStack<T> {
-  items: Array<T>;
+  private items: Array<T>;
 
   constructor() {
     this.items = [];

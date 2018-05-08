@@ -1,5 +1,15 @@
 import { Stack } from '../src/stack';
 
+class President {
+  name: string;
+  order: number;
+
+  constructor(name: string, order: number) {
+    this.name = name;
+    this.order = order;
+  }
+}
+
 let exp = expect as jest.Expect;
 if (Stack) {
 test('Stack is available as a named export from ./src/stack.ts', () => {
@@ -50,6 +60,27 @@ test('pop() returns undefined if the list is empty', () => {
   let l = new Stack<string>();
   let last = l.pop();
   exp(last).toBeUndefined();
+});
+
+test('behavior of length should be the same with data types other than strings', () => {
+  const l = new Stack<number>();
+  exp(l.length()).toEqual(0);
+  const m = new Stack<boolean>();
+  exp(m.length()).toEqual(0);
+  const n = new Stack<President>();
+  exp(n.length()).toEqual(0);
+});
+
+test('behavior of push should be the same with data types other than strings', () => {
+  const l = new Stack<number>();
+  l.push(56);
+  exp(l.length()).toEqual(1);
+  const m = new Stack<boolean>();
+  m.push(false);
+  exp(m.length()).toEqual(1);
+  const n = new Stack<President>();
+  const georgeWBush = new President('George', 43);
+  exp(n.length()).toEqual(0);
 });
 } else {
   describe('Instructions', () => {
