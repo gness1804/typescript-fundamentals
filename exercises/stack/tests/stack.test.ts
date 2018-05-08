@@ -117,6 +117,11 @@ test('behavior of push (simple) should be the same with data types other than st
     exp(n.length()).toEqual(1);
     exp(lastN).toEqual(lbj);
   });
+
+  test('print should be a method on the class Stack', () => {
+    const l = new Stack<string>();
+    exp(l.print).toBeDefined();
+  });
 } else {
   describe('Instructions', () => {
     test('Please uncomment the Stack class in stack/src/stack.ts', () => {

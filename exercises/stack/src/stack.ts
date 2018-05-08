@@ -3,7 +3,7 @@ interface IStack<T> {
   push(items: T[]): IStack<T>;
   pop(): T | undefined;
   length(): number;
-  // print(): void;
+  print(): void;
 }
 
 export class Stack<T> implements IStack<T> {
@@ -30,5 +30,9 @@ export class Stack<T> implements IStack<T> {
 
   pop = () => {
     return this.items.pop();
+  }
+
+  print = () => {
+    console.log('Your items:', this.items);
   }
 }
