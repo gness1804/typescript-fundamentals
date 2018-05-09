@@ -1,5 +1,15 @@
 import { Stack } from '../src/stack';
 
+class President {
+  name: string;
+  order: number;
+
+  constructor(name: string, order: number) {
+    this.name = name;
+    this.order = order;
+  }
+}
+
 let exp = expect as jest.Expect;
 if (Stack) {
 test('Stack is available as a named export from ./src/stack.ts', () => {
@@ -51,6 +61,67 @@ test('pop() returns undefined if the list is empty', () => {
   let last = l.pop();
   exp(last).toBeUndefined();
 });
+
+test('behavior of length should be the same with data types other than strings', () => {
+  const l = new Stack<number>();
+  exp(l.length()).toEqual(0);
+  const m = new Stack<boolean>();
+  exp(m.length()).toEqual(0);
+  const n = new Stack<President>();
+  exp(n.length()).toEqual(0);
+});
+
+test('behavior of push (simple) should be the same with data types other than strings', () => {
+  const l = new Stack<number>();
+  l.push(56);
+  exp(l.length()).toEqual(1);
+  const m = new Stack<boolean>();
+  m.push(false);
+  exp(m.length()).toEqual(1);
+  const n = new Stack<President>();
+  const gwb = new President('George', 43);
+  n.push(gwb);
+  exp(n.length()).toEqual(1);
+});
+
+  test('behavior of push (complex) should be the same with data types other than strings', () => {
+    const l = new Stack<number>();
+    l.push([56, 23, 7584]);
+    exp(l.length()).toEqual(3);
+    const m = new Stack<boolean>();
+    m.push([false, true, true, false]);
+    exp(m.length()).toEqual(4);
+    const n = new Stack<President>();
+    const gwb = new President('George', 43);
+    const lbj = new President('Lyndon', 36);
+    n.push([gwb, lbj]);
+    exp(n.length()).toEqual(2);
+  });
+
+  test('behavior of pop should be the same with data types other than strings', () => {
+    const l = new Stack<number>();
+    l.push([56, 23, 7584]);
+    const lastL = l.pop();
+    exp(l.length()).toEqual(2);
+    exp(lastL).toEqual(7584);
+    const m = new Stack<boolean>();
+    m.push([false, true, true, false]);
+    const lastM = m.pop();
+    exp(m.length()).toEqual(3);
+    exp(lastM).toEqual(false);
+    const n = new Stack<President>();
+    const gwb = new President('George', 43);
+    const lbj = new President('Lyndon', 36);
+    n.push([gwb, lbj]);
+    const lastN = n.pop();
+    exp(n.length()).toEqual(1);
+    exp(lastN).toEqual(lbj);
+  });
+
+  test('print should be a method on the class Stack', () => {
+    const l = new Stack<string>();
+    exp(l.print).toBeDefined();
+  });
 } else {
   describe('Instructions', () => {
     test('Please uncomment the Stack class in stack/src/stack.ts', () => {

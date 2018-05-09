@@ -6,6 +6,33 @@ interface IStack<T> {
   print(): void;
 }
 
-// export class Stack<T> {
+export class Stack<T> implements IStack<T> {
+  private items: Array<T>;
 
-// }
+  constructor() {
+    this.items = [];
+  }
+
+  length = () => {
+    return this.items.length;
+  }
+
+  push = (arg: T|Array<T>) => {
+    if (!Array.isArray(arg)) {
+      this.items.push(arg);
+    } else {
+      for (const a of arg) {
+        this.items.push(a);
+      }
+    }
+    return this;
+  }
+
+  pop = () => {
+    return this.items.pop();
+  }
+
+  print = () => {
+    console.log('Your items:', this.items);
+  }
+}
