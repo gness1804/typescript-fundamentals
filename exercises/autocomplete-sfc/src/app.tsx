@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PlaceSearchResult } from './place-search-result';
-import { PlaceDetails, PlaceSummary, fetchPlaceSummaries, fetchPlaceDetails } from './utils/places';
+import { PlaceDetails, PlaceSummary, fetchPlaceSummaries, fetchPlaceDetails, ShortPlaceDetails } from './utils/places';
 
 interface IAppState {
   results: PlaceDetails[];
@@ -24,7 +24,9 @@ export class App extends React.Component<{}, IAppState> {
       /////////////////////////////////////////////
       // 👇 Replace this with your new <PlaceSearchResult /> component //
       // return <p key={pr.id}>{pr.name}</p>;
-      return <PlaceSearchResult {...pr}/>;
+      const { rating, icon, name, url, vicinity } = pr;
+      const attrs: ShortPlaceDetails = { rating, icon, name, url, vicinity };
+      return <PlaceSearchResult {...attrs}/>;
     });
     return (
       <ul className='results'>
