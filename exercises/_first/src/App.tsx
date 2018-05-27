@@ -13,6 +13,7 @@ const App: React.SFC<AppPropsI> = ({field1, field2, activity}) => {
       <p>My first career was in {field1}, but that did not work out.</p>
       <p>So I switched to {field2}</p>
       <p>Sometimes I go to {activity || 'take a nap'}.</p>
+      <hr/>
       <Bar dog="Puck"/>
     </div>
   );
