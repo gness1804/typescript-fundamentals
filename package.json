@@ -11,7 +11,8 @@
     "test": "scripty",
     "test:ci": "scripty",
     "build:dev": "scripty",
-    "build:dist": "scripty"
+    "build:dist": "scripty",
+    "go": "npm start $1"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",
