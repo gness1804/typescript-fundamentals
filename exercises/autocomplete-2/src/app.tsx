@@ -5,12 +5,12 @@ import { PlaceDetails, PlaceSummary, fetchPlaceSummaries, fetchPlaceDetails } fr
 interface IAppState {
   results: PlaceDetails[];
   inProgress: boolean;
-  term: string; 
+  term: string;
 }
 
 export class App extends React.Component<{}, IAppState> {
-  constructor() {
-    super();
+  constructor(props: {}) {
+    super(props);
     this.state = {
       results: [],
       term: '',
