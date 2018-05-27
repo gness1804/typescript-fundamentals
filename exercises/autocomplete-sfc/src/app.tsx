@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PlaceSearchResult } from './place-search-result';
-import { PlaceDetails, PlaceSummary, fetchPlaceSummaries, fetchPlaceDetails } from './utils/places';
+import { PlaceDetails, PlaceSummary, fetchPlaceSummaries, fetchPlaceDetails, ShortPlaceDetails } from './utils/places';
 
 interface IAppState {
   results: PlaceDetails[];

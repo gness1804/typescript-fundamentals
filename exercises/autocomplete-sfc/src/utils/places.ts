@@ -14,6 +14,14 @@ export interface PlaceDetails {
   website?: string;
 }
 
+export interface ShortPlaceDetails {
+  rating: number,
+  icon: string,
+  name: string,
+  url: string,
+  vicinity: string,
+}
+
 /**
  * Search the google places API, for a particular term
  *
